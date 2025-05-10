@@ -1,0 +1,7 @@
+---
+- name: Scale the cluster
+<<<<<<< HEAD
+  ansible.builtin.import_playbook: playbooks/scale.yml
+=======
+  ansible.builtin.import_playbook: playbooks/scale.yml
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

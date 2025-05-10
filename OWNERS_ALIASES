@@ -1,0 +1,58 @@
+aliases:
+  kubespray-approvers:
+<<<<<<< HEAD
+    - cristicalin
+    - floryut
+    - liupeng0518
+    - mzaian
+    - oomichi
+    - yankay
+    - ant31
+    - vannten
+  kubespray-reviewers:
+    - cyclinder
+    - erikjiang
+    - mrfreezeex
+    - mzaian
+    - tico88612
+    - vannten
+    - yankay
+  kubespray-emeritus_approvers:
+    - atoms
+    - chadswen
+    - luckysb
+    - mattymo
+    - miouge1
+    - riverzhang
+=======
+    - mattymo
+    - chadswen
+    - mirwan
+    - miouge1
+    - luckysb
+    - floryut
+    - oomichi
+    - cristicalin
+    - liupeng0518
+    - yankay
+    - mzaian
+  kubespray-reviewers:
+    - holmsten
+    - bozzo
+    - eppo
+    - oomichi
+    - jayonlau
+    - cristicalin
+    - liupeng0518
+    - yankay
+    - cyclinder
+    - mzaian
+    - mrfreezeex
+    - erikjiang
+    - vannten
+  kubespray-emeritus_approvers:
+    - riverzhang
+    - atoms
+    - ant31
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    - woopstar
