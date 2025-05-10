@@ -1,0 +1,15 @@
+---
+multus_conf_file: "auto"
+multus_cni_conf_dir_host: "/etc/cni/net.d"
+multus_cni_bin_dir_host: "/opt/cni/bin"
+multus_cni_run_dir_host: "/run"
+multus_cni_conf_dir: "{{ ('/host', multus_cni_conf_dir_host) | join }}"
+multus_cni_bin_dir: "{{ ('/host', multus_cni_bin_dir_host) | join }}"
+multus_cni_run_dir: "{{ ('/host', multus_cni_run_dir_host) | join }}"
+<<<<<<< HEAD
+multus_kubeconfig_file_host: "{{ (multus_cni_conf_dir_host, '/multus.d/multus.kubeconfig') | join }}"
+multus_namespace_isolation: false
+=======
+multus_cni_version: "0.4.0"
+multus_kubeconfig_file_host: "{{ (multus_cni_conf_dir_host, '/multus.d/multus.kubeconfig') | join }}"
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

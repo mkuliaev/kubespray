@@ -1,0 +1,14 @@
+---
+# Limits for calico apps
+calico_policy_controller_cpu_limit: 1000m
+calico_policy_controller_memory_limit: 256M
+calico_policy_controller_cpu_requests: 30m
+calico_policy_controller_memory_requests: 64M
+calico_policy_controller_deployment_nodeselector: "kubernetes.io/os: linux"
+<<<<<<< HEAD
+calico_policy_controller_log_level: info
+=======
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+
+# SSL
+calico_cert_dir: "/etc/calico/certs"

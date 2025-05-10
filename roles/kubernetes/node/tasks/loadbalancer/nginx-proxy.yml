@@ -1,0 +1,53 @@
+---
+- name: Haproxy | Cleanup potentially deployed haproxy
+  file:
+    path: "{{ kube_manifest_dir }}/haproxy.yml"
+    state: absent
+
+- name: Nginx-proxy | Make nginx directory
+  file:
+    path: "{{ nginx_config_dir }}"
+    state: directory
+<<<<<<< HEAD
+    mode: "0700"
+=======
+    mode: 0700
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    owner: root
+
+- name: Nginx-proxy | Write nginx-proxy configuration
+  template:
+    src: "loadbalancer/nginx.conf.j2"
+    dest: "{{ nginx_config_dir }}/nginx.conf"
+    owner: root
+<<<<<<< HEAD
+    mode: "0755"
+    backup: true
+=======
+    mode: 0755
+    backup: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+
+- name: Nginx-proxy | Get checksum from config
+  stat:
+    path: "{{ nginx_config_dir }}/nginx.conf"
+<<<<<<< HEAD
+    get_attributes: false
+    get_checksum: true
+    get_mime: false
+=======
+    get_attributes: no
+    get_checksum: yes
+    get_mime: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  register: nginx_stat
+
+- name: Nginx-proxy | Write static pod
+  template:
+    src: manifests/nginx-proxy.manifest.j2
+    dest: "{{ kube_manifest_dir }}/nginx-proxy.yml"
+<<<<<<< HEAD
+    mode: "0640"
+=======
+    mode: 0640
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

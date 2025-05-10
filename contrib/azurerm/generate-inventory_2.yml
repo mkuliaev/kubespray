@@ -1,0 +1,10 @@
+---
+- name: Generate Azure inventory
+  hosts: localhost
+<<<<<<< HEAD
+  gather_facts: false
+=======
+  gather_facts: False
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  roles:
+    - generate-inventory_2

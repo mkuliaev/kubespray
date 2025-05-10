@@ -1,0 +1,39 @@
+<<<<<<< HEAD
+apiVersion: kubeadm.k8s.io/{{ kubeadm_config_api_version }}
+=======
+apiVersion: kubeadm.k8s.io/v1beta3
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+kind: InitConfiguration
+nodeRegistration:
+  criSocket: {{ cri_socket }}
+---
+<<<<<<< HEAD
+apiVersion: kubeadm.k8s.io/{{ kubeadm_config_api_version }}
+kind: ClusterConfiguration
+imageRepository: {{ kube_image_repo }}
+kubernetesVersion: v{{ kube_version }}
+=======
+apiVersion: kubeadm.k8s.io/v1beta3
+kind: ClusterConfiguration
+imageRepository: {{ kube_image_repo }}
+kubernetesVersion: {{ kube_version }}
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+etcd:
+{% if etcd_deployment_type == "kubeadm" %}
+  local:
+    imageRepository: "{{ etcd_image_repo | regex_replace("/etcd$","") }}"
+    imageTag: "{{ etcd_image_tag }}"
+{% else %}
+  external:
+      endpoints:
+{% for endpoint in etcd_access_addresses.split(',') %}
+      - {{ endpoint }}
+{% endfor %}
+{% endif %}
+dns:
+<<<<<<< HEAD
+=======
+  type: CoreDNS
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  imageRepository: {{ coredns_image_repo | regex_replace('/coredns(?!/coredns).*$', '') }}
+  imageTag: {{ coredns_image_tag }}

@@ -1,0 +1,27 @@
+---
+
+- name: Update server field in component kubeconfigs
+  lineinfile:
+    dest: "{{ kube_config_dir }}/{{ item }}"
+    regexp: '^    server: https'
+    line: '    server: {{ kube_apiserver_endpoint }}'
+<<<<<<< HEAD
+    backup: true
+=======
+    backup: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  with_items:
+    - admin.conf
+    - controller-manager.conf
+    - kubelet.conf
+    - scheduler.conf
+  notify:
+<<<<<<< HEAD
+    - "Control plane | Restart kube-controller-manager"
+    - "Control plane | Restart kube-scheduler"
+    - "Control plane | reload kubelet"
+=======
+    - "Master | Restart kube-controller-manager"
+    - "Master | Restart kube-scheduler"
+    - "Master | reload kubelet"
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

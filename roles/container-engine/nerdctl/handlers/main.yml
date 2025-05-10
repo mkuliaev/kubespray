@@ -1,0 +1,20 @@
+---
+- name: Get nerdctl completion
+  command: "{{ bin_dir }}/nerdctl completion bash"
+<<<<<<< HEAD
+  changed_when: false
+=======
+  changed_when: False
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  register: nerdctl_completion
+  check_mode: false
+
+- name: Install nerdctl completion
+  copy:
+    dest: /etc/bash_completion.d/nerdctl
+    content: "{{ nerdctl_completion.stdout }}"
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

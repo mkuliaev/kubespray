@@ -1,0 +1,33 @@
+---
+- name: Set base_dir
+  set_fact:
+    base_dir: "{{ playbook_dir }}/.generated/"
+
+- name: Create base_dir
+  file:
+    path: "{{ base_dir }}"
+    state: directory
+    recurse: true
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+
+- name: Store json files in base_dir
+  template:
+    src: "{{ item }}"
+    dest: "{{ base_dir }}/{{ item }}"
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  with_items:
+    - network.json
+    - storage.json
+    - availability-sets.json
+    - bastion.json
+    - masters.json
+    - minions.json
+    - clear-rg.json

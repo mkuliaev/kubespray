@@ -1,0 +1,26 @@
+---
+addusers:
+  - name: etcd
+    comment: "Etcd user"
+<<<<<<< HEAD
+    create_home: true
+    home: "{{ etcd_data_dir }}"
+    system: true
+=======
+    create_home: yes
+    home: "{{ etcd_data_dir }}"
+    system: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    shell: /sbin/nologin
+
+  - name: kube
+    comment: "Kubernetes user"
+<<<<<<< HEAD
+    create_home: false
+    system: true
+=======
+    create_home: no
+    system: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    shell: /sbin/nologin
+    group: "{{ kube_cert_group }}"

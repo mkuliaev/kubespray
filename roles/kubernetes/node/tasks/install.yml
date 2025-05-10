@@ -1,0 +1,34 @@
+---
+- name: Install | Copy kubeadm binary from download dir
+  copy:
+    src: "{{ downloads.kubeadm.dest }}"
+    dest: "{{ bin_dir }}/kubeadm"
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    remote_src: true
+  tags:
+    - kubeadm
+  when:
+<<<<<<< HEAD
+    - not ('kube_control_plane' in group_names)
+=======
+    - not inventory_hostname in groups['kube_control_plane']
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+
+- name: Install | Copy kubelet binary from download dir
+  copy:
+    src: "{{ downloads.kubelet.dest }}"
+    dest: "{{ bin_dir }}/kubelet"
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    remote_src: true
+  tags:
+    - kubelet
+    - upgrade
+  notify: Node | restart kubelet

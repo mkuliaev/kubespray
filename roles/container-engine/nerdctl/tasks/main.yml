@@ -1,0 +1,48 @@
+---
+- name: Nerdctl | Download nerdctl
+  include_tasks: "../../../download/tasks/download_file.yml"
+  vars:
+    download: "{{ download_defaults | combine(downloads.nerdctl) }}"
+
+- name: Nerdctl | Copy nerdctl binary from download dir
+  copy:
+    src: "{{ local_release_dir }}/nerdctl"
+    dest: "{{ bin_dir }}/nerdctl"
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    remote_src: true
+    owner: root
+    group: root
+  become: true
+  notify:
+    - Get nerdctl completion
+    - Install nerdctl completion
+
+- name: Nerdctl | Create configuration dir
+  file:
+    path: /etc/nerdctl
+    state: directory
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    owner: root
+    group: root
+  become: true
+
+- name: Nerdctl | Install nerdctl configuration
+  template:
+    src: nerdctl.toml.j2
+    dest: /etc/nerdctl/nerdctl.toml
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    owner: root
+    group: root
+  become: true

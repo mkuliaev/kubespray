@@ -1,0 +1,15 @@
+# See the OWNERS docs at https://go.k8s.io/owners
+
+approvers:
+<<<<<<< HEAD
+  - yankay
+  - ant31
+reviewers:
+  - yankay
+=======
+  - woopstar
+  - ant31
+reviewers:
+  - woopstar
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  - ant31

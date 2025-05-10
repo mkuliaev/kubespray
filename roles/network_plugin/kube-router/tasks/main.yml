@@ -1,0 +1,78 @@
+---
+- name: Kube-router | Create annotations
+  import_tasks: annotate.yml
+  tags: annotate
+
+- name: Kube-router | Create config directory
+  file:
+    path: /var/lib/kube-router
+    state: directory
+    owner: "{{ kube_owner }}"
+    recurse: true
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+
+- name: Kube-router | Create kubeconfig
+  template:
+    src: kubeconfig.yml.j2
+    dest: /var/lib/kube-router/kubeconfig
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    owner: "{{ kube_owner }}"
+  notify:
+    - Reset_kube_router
+
+- name: Kube-router | Slurp cni config
+  slurp:
+    src: /etc/cni/net.d/10-kuberouter.conflist
+  register: cni_config_slurp
+  ignore_errors: true  # noqa ignore-errors
+
+- name: Kube-router | Set cni_config variable
+  set_fact:
+    cni_config: "{{ cni_config_slurp.content | b64decode | from_json }}"
+  when:
+    - not cni_config_slurp.failed
+
+- name: Kube-router | Set host_subnet variable
+  when:
+    - cni_config is defined
+    - cni_config | json_query('plugins[?bridge==`kube-bridge`].ipam.subnet') | length > 0
+  set_fact:
+    host_subnet: "{{ cni_config | json_query('plugins[?bridge==`kube-bridge`].ipam.subnet') | first }}"
+
+- name: Kube-router | Create cni config
+  template:
+    src: cni-conf.json.j2
+    dest: /etc/cni/net.d/10-kuberouter.conflist
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    owner: "{{ kube_owner }}"
+  notify:
+    - Reset_kube_router
+
+- name: Kube-router | Delete old configuration
+  file:
+    path: /etc/cni/net.d/10-kuberouter.conf
+    state: absent
+
+- name: Kube-router | Create manifest
+  template:
+    src: kube-router.yml.j2
+    dest: "{{ kube_config_dir }}/kube-router.yml"
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  delegate_to: "{{ groups['kube_control_plane'] | first }}"
+  run_once: true

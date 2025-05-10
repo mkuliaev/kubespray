@@ -1,0 +1,8 @@
+---
+dependencies:
+  - role: container-engine/containerd-common
+<<<<<<< HEAD
+=======
+  - role: container-engine/docker-storage
+    when: docker_container_storage_setup and ansible_os_family == "RedHat"
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

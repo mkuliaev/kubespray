@@ -1,0 +1,36 @@
+---
+- name: Reset | check cni network device
+  stat:
+    path: /sys/class/net/cni0
+<<<<<<< HEAD
+    get_attributes: false
+    get_checksum: false
+    get_mime: false
+=======
+    get_attributes: no
+    get_checksum: no
+    get_mime: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  register: cni
+
+- name: Reset | remove the network device created by the flannel
+  command: ip link del cni0
+  when: cni.stat.exists
+
+- name: Reset | check flannel network device
+  stat:
+    path: /sys/class/net/flannel.1
+<<<<<<< HEAD
+    get_attributes: false
+    get_checksum: false
+    get_mime: false
+=======
+    get_attributes: no
+    get_checksum: no
+    get_mime: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  register: flannel
+
+- name: Reset | remove the network device created by the flannel
+  command: ip link del flannel.1
+  when: flannel.stat.exists

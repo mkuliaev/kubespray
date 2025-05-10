@@ -1,0 +1,35 @@
+---
+<<<<<<< HEAD
+- name: "Pre-upgrade | Delete control plane manifests if etcd secrets changed"
+=======
+- name: "Pre-upgrade | Delete master manifests if etcd secrets changed"
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  file:
+    path: "/etc/kubernetes/manifests/{{ item }}.manifest"
+    state: absent
+  with_items:
+    - ["kube-apiserver", "kube-controller-manager", "kube-scheduler"]
+  register: kube_apiserver_manifest_replaced
+  when: etcd_secret_changed | default(false)
+
+<<<<<<< HEAD
+- name: "Pre-upgrade | Delete control plane containers forcefully"  # noqa no-handler
+=======
+- name: "Pre-upgrade | Delete master containers forcefully"  # noqa no-handler
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  shell: "set -o pipefail && docker ps -af name=k8s_{{ item }}* -q | xargs --no-run-if-empty docker rm -f"
+  args:
+    executable: /bin/bash
+  with_items:
+    - ["kube-apiserver", "kube-controller-manager", "kube-scheduler"]
+  when: kube_apiserver_manifest_replaced.changed
+<<<<<<< HEAD
+  register: remove_control_plane_container
+  retries: 10
+  until: remove_control_plane_container.rc == 0
+=======
+  register: remove_master_container
+  retries: 10
+  until: remove_master_container.rc == 0
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  delay: 1

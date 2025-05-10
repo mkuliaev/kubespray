@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+<<<<<<< HEAD
+  gather_facts: false
+  become: true
+=======
+  gather_facts: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  roles:
+    - role: bootstrap-os

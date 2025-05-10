@@ -1,0 +1,37 @@
+---
+all:
+  vars:
+    ansible_user: ubuntu
+#    ansible_ssh_private_key_file: ~/.ssh/your_private_key  # Путь к SSH-ключу для ubuntu
+    ansible_become: true
+    ansible_become_method: sudo
+  hosts:
+    kuliaev-master:
+      ansible_host: 51.250.42.68
+      ip: 10.0.2.4
+#      access_ip: 51.250.42.68
+    kuliaev-worker-0:
+      ansible_host: 158.160.53.22
+      ip: 10.0.0.32
+      access_ip: 158.160.53.22
+    kuliaev-worker-1:
+      ansible_host: 158.160.26.50
+      ip: 10.0.1.28
+      access_ip: 158.160.26.50
+  children:
+    kube_control_plane:
+      hosts:
+        kuliaev-master:
+    kube_node:
+      hosts:
+        kuliaev-worker-0:
+        kuliaev-worker-1:
+    etcd:
+      hosts:
+        kuliaev-master:
+    k8s_cluster:
+      children:
+        kube_control_plane:
+        kube_node:
+    calico_rr:
+      hosts: {}

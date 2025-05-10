@@ -1,0 +1,20 @@
+---
+- name: Get crictl completion
+  command: "{{ bin_dir }}/crictl completion"
+<<<<<<< HEAD
+  changed_when: false
+=======
+  changed_when: False
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  register: cri_completion
+  check_mode: false
+
+- name: Install crictl completion
+  copy:
+    dest: /etc/bash_completion.d/crictl
+    content: "{{ cri_completion.stdout }}"
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

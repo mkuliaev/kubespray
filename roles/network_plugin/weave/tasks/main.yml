@@ -1,0 +1,20 @@
+---
+- name: Weave | Create manifest
+  template:
+    src: weave-net.yml.j2
+    dest: "{{ kube_config_dir }}/weave-net.yml"
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+
+- name: Weave | Fix nodePort for Weave
+  template:
+    src: 10-weave.conflist.j2
+    dest: /etc/cni/net.d/10-weave.conflist
+<<<<<<< HEAD
+    mode: "0644"
+=======
+    mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

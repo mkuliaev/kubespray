@@ -1,0 +1,9 @@
+---
+dependencies:
+<<<<<<< HEAD
+  - role: container-engine/crun
+=======
+  - role: container-engine/runc
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  - role: container-engine/crictl
+  - role: container-engine/skopeo

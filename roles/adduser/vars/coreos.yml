@@ -1,0 +1,14 @@
+---
+addusers:
+  - name: kube
+    comment: "Kubernetes user"
+    shell: /sbin/nologin
+<<<<<<< HEAD
+    system: true
+    group: "{{ kube_cert_group }}"
+    create_home: false
+=======
+    system: yes
+    group: "{{ kube_cert_group }}"
+    create_home: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

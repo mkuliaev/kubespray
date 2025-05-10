@@ -1,0 +1,20 @@
+---
+- name: CRI-O | reload systemd
+<<<<<<< HEAD
+  systemd_service:
+=======
+  systemd:
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    daemon_reload: true
+  listen: Restart crio
+
+- name: CRI-O | reload crio
+  service:
+    name: crio
+    state: restarted
+<<<<<<< HEAD
+    enabled: true
+=======
+    enabled: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  listen: Restart crio

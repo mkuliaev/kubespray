@@ -1,0 +1,30 @@
+---
+- name: Collect container images for offline deployment
+  hosts: localhost
+<<<<<<< HEAD
+  become: false
+=======
+  become: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+
+  roles:
+    # Just load default variables from roles.
+    - role: kubespray-defaults
+      when: false
+    - role: download
+      when: false
+
+  tasks:
+    # Generate files.list and images.list files from templates.
+    - name: Collect container images for offline deployment
+      template:
+        src: ./contrib/offline/temp/{{ item }}.list.template
+        dest: ./contrib/offline/temp/{{ item }}.list
+<<<<<<< HEAD
+        mode: "0644"
+=======
+        mode: 0644
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+      with_items:
+        - files
+        - images

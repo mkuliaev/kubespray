@@ -1,0 +1,16 @@
+---
+- name: Crun | Download crun binary
+  include_tasks: "../../../download/tasks/download_file.yml"
+  vars:
+    download: "{{ download_defaults | combine(downloads.crun) }}"
+
+- name: Copy crun binary from download dir
+  copy:
+    src: "{{ downloads.crun.dest }}"
+    dest: "{{ bin_dir }}/crun"
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    remote_src: true

@@ -1,0 +1,73 @@
+---
+- name: Set kubelet api version to v1beta1
+  set_fact:
+    kubeletConfig_api_version: v1beta1
+  tags:
+    - kubelet
+    - kubeadm
+
+- name: Write kubelet environment config file (kubeadm)
+  template:
+    src: "kubelet.env.{{ kubeletConfig_api_version }}.j2"
+    dest: "{{ kube_config_dir }}/kubelet.env"
+    setype: "{{ (preinstall_selinux_state != 'disabled') | ternary('etc_t', omit) }}"
+<<<<<<< HEAD
+    backup: true
+    mode: "0600"
+=======
+    backup: yes
+    mode: 0600
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  notify: Node | restart kubelet
+  tags:
+    - kubelet
+    - kubeadm
+
+- name: Write kubelet config file
+  template:
+    src: "kubelet-config.{{ kubeletConfig_api_version }}.yaml.j2"
+    dest: "{{ kube_config_dir }}/kubelet-config.yaml"
+<<<<<<< HEAD
+    mode: "0600"
+=======
+    mode: 0600
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  notify: Kubelet | restart kubelet
+  tags:
+    - kubelet
+    - kubeadm
+
+- name: Write kubelet systemd init file
+  template:
+    src: "kubelet.service.j2"
+    dest: "/etc/systemd/system/kubelet.service"
+<<<<<<< HEAD
+    backup: true
+    mode: "0600"
+=======
+    backup: "yes"
+    mode: 0600
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    validate: "sh -c '[ -f /usr/bin/systemd/system/factory-reset.target ] || exit 0 && systemd-analyze verify %s:kubelet.service'"
+    # FIXME: check that systemd version >= 250 (factory-reset.target was introduced in that release)
+    # Remove once we drop support for systemd < 250
+  notify: Node | restart kubelet
+  tags:
+    - kubelet
+    - kubeadm
+
+- name: Flush_handlers and reload-systemd
+  meta: flush_handlers
+
+- name: Enable kubelet
+  service:
+    name: kubelet
+<<<<<<< HEAD
+    enabled: true
+=======
+    enabled: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    state: started
+  tags:
+    - kubelet
+  notify: Kubelet | restart kubelet

@@ -1,0 +1,13 @@
+---
+# list of admission plugins that needs to be configured
+<<<<<<< HEAD
+# https://kubernetes.io/docs/reference/access-authn-authz/admission-controllers/
+kube_apiserver_admission_plugins_needs_configuration:
+- EventRateLimit
+- ImagePolicyWebhook
+- PodSecurity
+- PodNodeSelector
+- ResourceQuota
+=======
+kube_apiserver_admission_plugins_needs_configuration: [EventRateLimit, PodSecurity]
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

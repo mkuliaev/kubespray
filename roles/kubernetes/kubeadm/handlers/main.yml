@@ -1,0 +1,15 @@
+---
+- name: Kubeadm | reload systemd
+<<<<<<< HEAD
+  systemd_service:
+=======
+  systemd:
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    daemon_reload: true
+  listen: Kubeadm | restart kubelet
+
+- name: Kubeadm | reload kubelet
+  service:
+    name: kubelet
+    state: restarted
+  listen: Kubeadm | restart kubelet

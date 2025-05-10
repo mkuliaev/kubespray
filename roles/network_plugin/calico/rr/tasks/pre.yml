@@ -1,0 +1,19 @@
+---
+- name: Calico-rr | Disable calico-rr service if it exists
+  service:
+    name: calico-rr
+    state: stopped
+<<<<<<< HEAD
+    enabled: false
+=======
+    enabled: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  failed_when: false
+
+- name: Calico-rr | Delete obsolete files
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - /etc/calico/calico-rr.env
+    - /etc/systemd/system/calico-rr.service

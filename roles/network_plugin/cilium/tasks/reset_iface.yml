@@ -1,0 +1,18 @@
+---
+- name: "Reset | check if network device {{ iface }} is present"
+  stat:
+    path: "/sys/class/net/{{ iface }}"
+<<<<<<< HEAD
+    get_attributes: false
+    get_checksum: false
+    get_mime: false
+=======
+    get_attributes: no
+    get_checksum: no
+    get_mime: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  register: device_remains
+
+- name: "Reset | remove network device {{ iface }}"
+  command: "ip link del {{ iface }}"
+  when: device_remains.stat.exists

@@ -1,0 +1,22 @@
+---
+
+# These tasks will undo changes done by kubespray in the past if needed (e.g. when upgrading from kubespray 2.0.x
+# or when changing resolvconf_mode)
+
+- name: Remove kubespray specific config from dhclient config
+  blockinfile:
+    path: "{{ dhclientconffile }}"
+    state: absent
+<<<<<<< HEAD
+    backup: "{{ leave_etc_backup_files }}"
+=======
+    backup: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    marker: "# Ansible entries {mark}"
+  notify: Preinstall | propagate resolvconf to k8s components
+
+- name: Remove kubespray specific dhclient hook
+  file:
+    path: "{{ dhclienthookfile }}"
+    state: absent
+  notify: Preinstall | propagate resolvconf to k8s components

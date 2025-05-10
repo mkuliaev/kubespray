@@ -1,0 +1,37 @@
+---
+kube_owner: kube
+kube_cert_group: kube-cert
+etcd_data_dir: "/var/lib/etcd"
+
+addusers:
+  etcd:
+    name: etcd
+    comment: "Etcd user"
+<<<<<<< HEAD
+    create_home: false
+    system: true
+=======
+    create_home: no
+    system: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    shell: /sbin/nologin
+  kube:
+    name: kube
+    comment: "Kubernetes user"
+<<<<<<< HEAD
+    create_home: false
+    system: true
+=======
+    create_home: no
+    system: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    shell: /sbin/nologin
+    group: "{{ kube_cert_group }}"
+
+adduser:
+  name: "{{ user.name }}"
+  group: "{{ user.name | default(None) }}"
+  comment: "{{ user.comment | default(None) }}"
+  shell: "{{ user.shell | default(None) }}"
+  system: "{{ user.system | default(None) }}"
+  create_home: "{{ user.create_home | default(None) }}"

@@ -1,0 +1,22 @@
+# ---
+# peers:
+#   - router_id: "10.99.0.34"
+#     as: "65xxx"
+<<<<<<< HEAD
+#     filters: []
+#     numallowedlocalasnumbers: 0
+#     sourceaddress: "None"
+#   - router_id: "10.99.0.35"
+#     as: "65xxx"
+#     filters: []
+#     numallowedlocalasnumbers: 0
+=======
+#     sourceaddress: "None"
+#   - router_id: "10.99.0.35"
+#     as: "65xxx"
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+#     sourceaddress: "None"
+
+# loadbalancer_apiserver:
+#   address: "10.99.0.44"
+#   port: "8383"

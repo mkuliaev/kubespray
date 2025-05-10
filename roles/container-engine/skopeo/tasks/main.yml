@@ -1,0 +1,42 @@
+---
+- name: Skopeo | check if fedora coreos
+  stat:
+    path: /run/ostree-booted
+<<<<<<< HEAD
+    get_attributes: false
+    get_checksum: false
+    get_mime: false
+=======
+    get_attributes: no
+    get_checksum: no
+    get_mime: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+  register: ostree
+
+- name: Skopeo | set is_ostree
+  set_fact:
+    is_ostree: "{{ ostree.stat.exists }}"
+
+- name: Skopeo | Uninstall skopeo package managed by package manager
+  package:
+    name: skopeo
+    state: absent
+  when:
+    - not (is_ostree or (ansible_distribution == "Flatcar Container Linux by Kinvolk") or (ansible_distribution == "Flatcar"))
+  ignore_errors: true  # noqa ignore-errors
+
+- name: Skopeo | Download skopeo binary
+  include_tasks: "../../../download/tasks/download_file.yml"
+  vars:
+    download: "{{ download_defaults | combine(downloads.skopeo) }}"
+
+- name: Copy skopeo binary from download dir
+  copy:
+    src: "{{ downloads.skopeo.dest }}"
+    dest: "{{ bin_dir }}/skopeo"
+<<<<<<< HEAD
+    mode: "0755"
+=======
+    mode: 0755
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    remote_src: true

@@ -1,0 +1,27 @@
+---
+- name: CNI | make sure /opt/cni/bin exists
+  file:
+    path: /opt/cni/bin
+    state: directory
+<<<<<<< HEAD
+    mode: "0755"
+    owner: "{{ cni_bin_owner }}"
+=======
+    mode: 0755
+    owner: "{{ kube_owner }}"
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    recurse: true
+
+- name: CNI | Copy cni plugins
+  unarchive:
+    src: "{{ downloads.cni.dest }}"
+    dest: "/opt/cni/bin"
+<<<<<<< HEAD
+    mode: "0755"
+    owner: "{{ cni_bin_owner }}"
+    remote_src: true
+=======
+    mode: 0755
+    owner: "{{ kube_owner }}"
+    remote_src: yes
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))

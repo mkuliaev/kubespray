@@ -1,0 +1,15 @@
+---
+- name: Extract_file | Unpacking archive
+  unarchive:
+    src: "{{ download.dest }}"
+    dest: "{{ download.dest | dirname }}"
+    owner: "{{ download.owner | default(omit) }}"
+    mode: "{{ download.mode | default(omit) }}"
+<<<<<<< HEAD
+    remote_src: true
+=======
+    copy: no
+>>>>>>> 2cb8c8544 (Fix logical error when checking for boostrap-os (#10867) (#10953))
+    extra_opts: "{{ download.unarchive_extra_opts | default(omit) }}"
+  when:
+    - download.unarchive | default(false)
